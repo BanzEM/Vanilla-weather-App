@@ -1,0 +1,49 @@
+#body {
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+}
+.container {
+  font-family: "Open Sans", sans-serif;
+}
+#extra-info {
+  border-radius: 20px;
+  padding: 15px;
+  width: 180px;
+}
+#icon {
+  width: 100px;
+  max-width: 100px;
+}
+#temp {
+  font-size: 50px;
+  margin-top: 0;
+}
+#description {
+  font-size: 25px;
+}
+#city-input {
+  width: 280px;
+  border-radius: 10px;
+}
+#date {
+  font-size: 20px;
+  margin: 0px;
+}
+button {
+  border-radius: 10px;
+}
+h1 {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+h2 {
+  margin-top: 0;
+}
+#time {
+  font-size: 20px;
+  text-align: center;
+}
