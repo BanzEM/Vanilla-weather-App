@@ -1,3 +1,37 @@
+function displayDate(datestamp) {
+  let now = new Date(datestamp);
+  let date = now.getDate();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
+  return `${day} ${date} ${month} ${year} ${hours}:${minutes}`;
+}
+
 function weatherDiscription(response) {
   console.log(response.data);
   let cityElement = document.querySelector("#city-name");
@@ -18,6 +52,8 @@ function weatherDiscription(response) {
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = displayDate(response.data.dt * 1000);
 }
-let apiKey = "cfd80777c90e8e846763d288e2982966";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(weatherDiscription);
+function search(city) {
+  let apiKey = "cfd80777c90e8e846763d288e2982966";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(weatherDiscription);
+}
