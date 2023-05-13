@@ -43,6 +43,7 @@ function displayDate(datestamp) {
 
 function weatherDiscription(response) {
   console.log(response.data);
+  celsiusTemperature = response.data.main.temp;
   let cityElement = document.querySelector("#city-name");
   cityElement.innerHTML = response.data.name;
   let descriptionElement = document.querySelector("#description");
@@ -66,3 +67,22 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(weatherDiscription);
 }
+
+function fahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temp");
+  temperatureElement.innerHTML = Math.round(fahrenheitConversion);
+}
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", fahrenheitTemperature);
+
+let celsiusTemperature = null;
+
+function celsiusConversion(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", celsiusConversion);
