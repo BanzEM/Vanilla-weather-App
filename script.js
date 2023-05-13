@@ -1,3 +1,12 @@
+function buttonResponse(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  search(cityInput.value);
+}
+
+let form = document.querySelector("#form-control");
+form.addEventListener("submit", buttonResponse);
+
 function displayDate(datestamp) {
   let now = new Date(datestamp);
   let date = now.getDate();
