@@ -50,3 +50,14 @@ h2 {
 .source-code {
   text-align: center;
 }
+a {
+  text-decoration: none;
+}
+
+.active-link {
+  color: black;
+  cursor: default;
+}
+.active-link:hover {
+  text-decoration: none;
+}
