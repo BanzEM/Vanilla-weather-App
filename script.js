@@ -96,3 +96,5 @@ function celsiusConversion(event) {
 }
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", celsiusConversion);
+
+search("Durban");
