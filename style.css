@@ -2,7 +2,7 @@
   padding: 2em;
   border-radius: 30px;
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
   margin: auto;
 }
 .container {
@@ -60,4 +60,16 @@ a {
 }
 .active-link:hover {
   text-decoration: none;
+}
+.future-icon {
+  text-align: center;
+}
+.day {
+  text-align: center;
+}
+.max-min {
+  text-align: center;
+}
+.next-days {
+  width: 400px;
 }

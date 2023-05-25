@@ -46,34 +46,47 @@ function displayDate(datestamp) {
   let year = now.getFullYear();
   return `${day} ${date} ${month} ${year} ${hours}:${minutes}`;
 }
-function displayFutureForecast() {
+function displayFutureDate(datestamp) {
+  let now = new Date(datestamp);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[now.getDay()];
+  return `${day}`;
+}
+function displayFutureForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#future-forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (formatDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2">
               <div class="card" id="next-days">
-                <p>${day}</p>
-                <img
-                  src="https://openweathermap.org/img/wn/04d@2x.png"
+                <p class="day">${displayFutureDate(formatDay.dt * 1000)}</p>
+                <div class="description">${formatDay.weather[0].main}</div>
+                <img class="future-icon"
+                  src="https://openweathermap.org/img/wn/${
+                    formatDay.weather[0].icon
+                  }@2x.png"
                   alt=""
                   id=""
                 />
-                <p>21/11</p>
+                <p class="max-min">${Math.round(
+                  formatDay.temp.max
+                )}/${Math.round(formatDay.temp.min)}</p>
               </div>
           </div>`;
+    }
   });
   forecastHTML = forecastHTML + `<div/>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
-function nextDaysForecast(response) {
-  let apiKey = "cfd80777c90e8e846763d288e2982966";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${response.lat}&lon=${response.lon}&appid=${apiKey}&units=metric`;
+function nextDaysForecast(coordinates) {
+  let apiKey = "e6c2364656962bdcb16bc352fc42569a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayFutureForecast);
 }
 
@@ -97,9 +110,10 @@ function weatherDiscription(response) {
   );
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = displayDate(response.data.dt * 1000);
+  nextDaysForecast(response.data.coord);
 }
 function search(city) {
-  let apiKey = "cfd80777c90e8e846763d288e2982966";
+  let apiKey = "e6c2364656962bdcb16bc352fc42569a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(weatherDiscription);
 }
@@ -128,4 +142,3 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", celsiusConversion);
 
 search("Durban");
-displayFutureForecast();
