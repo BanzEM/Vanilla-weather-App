@@ -46,6 +46,36 @@ function displayDate(datestamp) {
   let year = now.getFullYear();
   return `${day} ${date} ${month} ${year} ${hours}:${minutes}`;
 }
+function displayFutureForecast() {
+  let forecastElement = document.querySelector("#future-forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="card" id="next-days">
+                <p>${day}</p>
+                <img
+                  src="https://openweathermap.org/img/wn/04d@2x.png"
+                  alt=""
+                  id=""
+                />
+                <p>21/11</p>
+              </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `<div/>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function nextDaysForecast(response) {
+  let apiKey = "cfd80777c90e8e846763d288e2982966";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${response.lat}&lon=${response.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayFutureForecast);
+}
 
 function weatherDiscription(response) {
   console.log(response.data);
@@ -98,3 +128,4 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", celsiusConversion);
 
 search("Durban");
+displayFutureForecast();
