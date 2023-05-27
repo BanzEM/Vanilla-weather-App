@@ -50,7 +50,7 @@ function displayFutureDate(datestamp) {
   let now = new Date(datestamp);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[now.getDay()];
-  return `${day}`;
+  return `<strong>${day}</strong>`;
 }
 function displayFutureForecast(response) {
   let forecast = response.data.daily;
@@ -117,28 +117,5 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(weatherDiscription);
 }
-
-function fahrenheitTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active-link");
-  fahrenheitLink.classList.add("active-link");
-  let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#temp");
-  temperatureElement.innerHTML = Math.round(fahrenheitConversion);
-}
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", fahrenheitTemperature);
-
-let celsiusTemperature = null;
-
-function celsiusConversion(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.remove("active-link");
-  celsiusLink.classList.add("active-link");
-  let temperatureElement = document.querySelector("#temp");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", celsiusConversion);
 
 search("Durban");

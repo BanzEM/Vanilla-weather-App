@@ -4,6 +4,8 @@
   width: 100%;
   max-width: 500px;
   margin: auto;
+  background-image: url("sky.jpg");
+  background-size: cover;
 }
 .container {
   font-family: "Open Sans", sans-serif;
@@ -12,6 +14,7 @@
   border-radius: 20px;
   padding: 15px;
   width: 180px;
+  border-color: rgb(140, 49, 49);
 }
 #icon {
   width: 100px;
@@ -23,6 +26,9 @@
 }
 #description {
   font-size: 25px;
+  color: white;
+  padding-left: 30px;
+  padding-top: 10px;
 }
 #city-input {
   width: 280px;
@@ -31,6 +37,31 @@
 #date {
   font-size: 20px;
   margin: 0px;
+}
+#next-days {
+  width: 60px;
+  border-radius: 5px;
+  text-align: center;
+  border: solid, white;
+}
+#future-forecast {
+  background: rgba(27, 27, 28, 0.4);
+  padding: 25px;
+  max-width: 500px;
+  margin-top: 20px;
+}
+#time {
+  font-size: 20px;
+  text-align: center;
+}
+#section1 {
+  background: rgba(27, 27, 28, 0.4);
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+#form-control {
+  text-align: center;
 }
 button {
   border-radius: 10px;
@@ -43,24 +74,15 @@ h1 {
 h2 {
   margin-top: 0;
 }
-#time {
-  font-size: 20px;
-  text-align: center;
-}
+
 .source-code {
   text-align: center;
 }
-a {
+a#celsius {
   text-decoration: none;
+  font-size: 20px;
 }
 
-.active-link {
-  color: black;
-  cursor: default;
-}
-.active-link:hover {
-  text-decoration: none;
-}
 .future-icon {
   text-align: center;
 }
@@ -72,4 +94,8 @@ a {
 }
 .next-days {
   width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  text-align: center;
 }
